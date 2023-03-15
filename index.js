@@ -1,6 +1,7 @@
 const form = document.forms.comments
 const nameInput = form.elements.name
 const textInput = form.elements.text
+const dateInput = form.elements.date
 
 // delete and like
 
@@ -112,6 +113,12 @@ function hideError(inputSelector) {
     error.style.display = "none"
 }
 
+function clearForm() {
+    nameInput.value = ""
+    textInput.value = ""
+    dateInput.value = ""
+}
+
 form.addEventListener("submit", (e) => {
     e.preventDefault()
     const name = nameInput.value
@@ -129,6 +136,7 @@ form.addEventListener("submit", (e) => {
         }
     } else {
         addComment(name, dateTransform(form.elements.date.value), text)
+        clearForm()
     }
 })
 
@@ -150,6 +158,7 @@ textInput.addEventListener("keydown", (e) => {
             }
         } else {
             addComment(name, dateTransform(form.elements.date.value), text)
+            clearForm()
         }
     }
 })
